@@ -8,21 +8,15 @@ Servo servoGran;
 
 
 
-void pickup(bool isDir){
-  if(isDir){
-    servoDir.write(180);
-    delay(200);    
-  }
-  else{
-    servoEsq.write(180);
-    delay(200);
-  }
-  servoGran.write(0);
-  delay(200);
+void pickup(){
+  delay(500);
+  servoGran.write(130);
+  delay(500);
+  servoDir.write(90);
 }
 
 void deliver(){
-  servoGran.write(180);
+  servoGran.write(0);
   delay(200);
   servoDir.write(0);
   servoEsq.write(0);
@@ -30,16 +24,15 @@ void deliver(){
 
 void setup(){
   servoGran.attach(4);
+  servoGran.write(0);
+  
+  delay(500);
+  
   servoDir.attach(8);
-  servoEsq.attach(7);
-  Serial.begin(9600);
-  servoDir.write(0);
-  servoGran.write(180);
-  servoEsq.write(0);
+  
+  servoDir.write(180);
+  delay(500);
 }
 void loop(){
- pickup(true);
- deliver();
- delay(10000000);
-
+  pickup();
 }
