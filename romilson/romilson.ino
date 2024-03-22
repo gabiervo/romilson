@@ -62,6 +62,9 @@ void setup(){
 }
 
 void loop(){
-
+  mov(100);
+  delay(2000);
+  mov(-100);
+  delay(2000);
 
 }
