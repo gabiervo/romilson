@@ -39,16 +39,12 @@ void loop(){
   leftReadLdr = analogRead(ldrLeft);
   rightReadLdr = analogRead(ldrRight);  
 
-  if((leftReadLdr - rightReadLdr) > 100){
-      analogWrite(motorA1, HIGH);
-      analogWrite(motorB1, LOW);
-   }
-   else if((rightReadLdr - leftReadLdr) > 100){
-      analogWrite(motorA1, LOW);
-      analogWrite(motorB1, HIGH);
+  if(rightReadLdr > 950){
+      digitalWrite(motorB1, HIGH);
+      analogWrite(motorA1, 70);
    }
    else{
-     analogWrite(motorA1, HIGH);
-     analogWrite(motorB1, HIGH);
+    digitalWrite(motorA1, HIGH);
+    analogWrite(motorB1, 70);
    }
 }
