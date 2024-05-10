@@ -2,9 +2,9 @@
 #define TRIG 11
 #define ECHO 12
 
-const int ldrLeft = A0;
+const int ldrLeft = A2;
 const int ldrFrente = A1;
-const int ldrRight = A2;
+const int ldrRight = A0;
 
 Servo servoLeft;
 Servo servoRight;
@@ -39,7 +39,7 @@ void loop(){
   leftReadLdr = analogRead(ldrLeft);
   rightReadLdr = analogRead(ldrRight);  
 
-  if(rightReadLdr > 950){
+  if(leftReadLdr > 950){
       digitalWrite(motorB1, HIGH);
       analogWrite(motorA1, 70);
    }
