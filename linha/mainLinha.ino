@@ -75,45 +75,34 @@ void loop() {
   ultra=(0.01723 * readUltrasonicDistance(10, 11));
 
   if(analogRead(ldrDireita)>valLdrDireita){
-    digitalWrite(pA,LOW);  
-    digitalWrite(pB,HIGH);  
-    digitalWrite(pC,LOW);  
-    digitalWrite(pD,LOW);  
+    motorMovement(LOW, HIGH, LOW, LOW);
   }
 
   if(analogRead(ldrDireita)<valLdrDireita){
-    digitalWrite(pA,LOW);  
-    digitalWrite(pB,LOW);  
-    digitalWrite(pC,HIGH);  
-    digitalWrite(pD,LOW);  
+    motorMovement(LOW, LOW, HIGH, LOW);
   }
 
   if(ultra<3){
     delay(10);
     if(ultra<(0.01723 * readUltrasonicDistance(10, 11))){
-      digitalWrite(pA,LOW);  
-      digitalWrite(pB,LOW);  
-      digitalWrite(pC,LOW);  
-      digitalWrite(pD,LOW);  
+      motorMovement();
+
       delay(200); 
+
       garraE.attach(7);
       garraE.write(180);
+
       delay(300);
       base.attach(4);
       delay(100);
       base.write(0);
       delay(500);
-      digitalWrite(pA,HIGH);  
-      digitalWrite(pB,LOW);  
-      digitalWrite(pC,HIGH);  
-      digitalWrite(pD,LOW); 
+
+      motorMovement(HIGH, LOW, HIGH, LOW);
       delay(500);
 
       while( analogRead(ldrDireita) < valLdrDireita){
-        digitalWrite(pA,HIGH);  
-        digitalWrite(pB,LOW);  
-        digitalWrite(pC,HIGH);  
-        digitalWrite(pD,LOW); 
+        motorMovement(HIGH, LOW, HIGH, LOW);
       }
 
       stateManager=1;
@@ -122,20 +111,12 @@ void loop() {
 
   if(stateManager==1){
     if(analogRead(ldrEsquerda)>leituraLdrEsquerda){
-      digitalWrite(pA,LOW);  
-      analogWrite(pB,100);  
-      digitalWrite(pC,HIGH);  
-      digitalWrite(pD,LOW); 
+      motorMovement(LOW, 100, HIGH, LOW);
     }
 
     if(analogRead(ldrEsquerda)<leituraLdrEsquerda){
-      digitalWrite(pA,LOW);  
-      digitalWrite(pB,HIGH);  
-      digitalWrite(pC,LOW);  
-      analogWrite(pD,70);   
+      motorMovement(LOW, HIGH, LOW, 70);
     }  
   }
 
 }
-
-
