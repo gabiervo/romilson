@@ -69,7 +69,7 @@ void setup() {
 
    for(int j = 0; j < 3; j++){
       delay(20);
-      valLDR = (valLdr + analogRead(A2)) / 2;
+      valLDR = (valLDR + analogRead(A2)) / 2;
       paro = (paro + analogRead(A1)) / 2;
       leit = (leit + analogRead(A0)) / 2;
    }
