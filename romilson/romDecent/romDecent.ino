@@ -67,16 +67,12 @@ void setup() {
    leit=analogRead(A0);
    paro=analogRead(A1);
 
-   int *valList = new int[3] {leit, paro, valLDR};
-   int *pinList = new int[3] {A0, A1, A2};
-   for(int y = 0; y < 3; y++){
-      for(int j = 0; j < 3; j++){
-         delay(20);
-         valList[j] = ( valList[j] + analogRead(pinList[j]) ) / 2;
-      }
+   for(int j = 0; j < 3; j++){
+      delay(20);
+      valLDR = (valLdr + analogRead(A2)) / 2;
+      paro = (paro + analogRead(A1)) / 2;
+      leit = (leit + analogRead(A0)) / 2;
    }
-   delete[] valList;
-   delete[] pinList;
 }
 
 void loop() {
